@@ -23,10 +23,10 @@ const db = mysql.createConnection({
 });
 
 // Connect to the database
-// db.connect((err) => {
-//   if (err) throw err;
-//   console.log("Connected to the database");
-// });
+db.connect((err) => {
+  if (err) throw err;
+  console.log("Connected to the database");
+});
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "Public", "UserLogIn.html"));
@@ -34,12 +34,12 @@ app.get("/", (req, res) => {
 
 // POST route to handle the form submission
 app.post("/login", (req, res) => {
-  const { name, email, password, phone } = req.body;
+  const { name, email, password, contact_number } = req.body;
 
   // SQL query to insert data into the 'users' table
   const query =
-    "INSERT INTO users (name, email, password, phone) VALUES (?, ?, ?, ?)";
-  db.query(query, [name, email, password, phone], (err, result) => {
+    "INSERT INTO users (name, email, password, contact_number) VALUES (?, ?, ?, ?)";
+  db.query(query, [name, email, password, contact_number], (err, result) => {
     if (err) throw err;
     res.send("Account created successfully!");
   });
