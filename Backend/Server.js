@@ -1,6 +1,6 @@
 import express from "express";
-const mysql = require("mysql2");
-const bodyParser = require("body-parser");
+import mysql from "mysql2";
+import bodyParser from "body-parser";
 const app = express();
 import path from "path";
 import { fileURLToPath } from "url";
@@ -23,10 +23,10 @@ const db = mysql.createConnection({
 });
 
 // Connect to the database
-db.connect((err) => {
-  if (err) throw err;
-  console.log("Connected to the database");
-});
+// db.connect((err) => {
+//   if (err) throw err;
+//   console.log("Connected to the database");
+// });
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "Public", "UserLogIn.html"));
